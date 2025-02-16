@@ -1,7 +1,7 @@
 {
     "id": "obsidian-image-embedder",
     "name": "Image Embedder",
-    "version": "1.2.1",
+    "version": "1.0.1",
     "minAppVersion": "0.15.0",
     "description": "Automatically embeds images with their names in markdown.",
     "author": "Loki2077",

@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-image-embedder",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Automatically embeds images with their names in markdown.",
 	"main": "main.js",
 	"scripts": {
