@@ -1,11 +1,11 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
-	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
-	"isDesktopOnly": false
+    "id": "obsidian-image-embedder",
+    "name": "Image Embedder",
+    "version": "1.0.4",
+    "minAppVersion": "0.15.0",
+    "description": "Automatically embeds images with their names in markdown.",
+    "author": "Loki2077",
+    "authorUrl": "https://github.com/Loki2077",
+    "fundingUrl": "https://github.com/Loki2077",
+    "isDesktopOnly": false
 }

@@ -1,34 +1,56 @@
 name: Release Obsidian plugin
+# 本工作流用于发布 Obsidian 插件，当推送 tag 时触发。
 
 on:
   push:
     tags:
-      - "*"
+      - "*"  # 当任意 tag 被推送时触发工作流
 
+# 添加 permissions 配置，确保 workflow 有足够的权限访问资源
+permissions:
+  contents: write
+
+# 定义环境变量，这里 PLUGIN_NAME 用于标识插件的名称，应与插件 id 相匹配
 env:
-  PLUGIN_NAME: your-plugin-id # Change this to match the id of your plugin.
+  PLUGIN_NAME: obsidian-auto-image-name # 请根据实际情况修改
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # 使用最新版 Ubuntu 虚拟机运行构建任务
 
     steps:
       - uses: actions/checkout@v2
+        # 检出仓库代码
+
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
+        # 设置 Node.js 版本为 14.x
 
       - name: Build
         id: build
         run: |
           npm install
+          # 安装项目依赖
+
           npm run build
+          # 执行构建脚本，生成构建产物
+
           mkdir ${{ env.PLUGIN_NAME }}
+          # 创建一个与插件名称相同的目录，用于存放插件的发布文件
+
           cp main.js manifest.json styles.css ${{ env.PLUGIN_NAME }}
+          # 将主要文件复制到插件目录中
+
           zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
+          # 将插件目录打包为 ZIP 压缩包，便于发布
+
           ls
+          # 列出当前目录下的文件，供调试使用
+
           echo "tag_name=$(git tag --sort version:refname | tail -n 1)" >> $GITHUB_OUTPUT
+          # 从 Git 标签中获取最新版本号（根据 Semantic Versioning 排序），并将其保存为输出变量
 
       - name: Create Release
         id: create_release
@@ -75,13 +97,13 @@ jobs:
           asset_name: manifest.json
           asset_content_type: application/json
 
-      - name: Upload styles.css
-        id: upload-css
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./styles.css
-          asset_name: styles.css
-          asset_content_type: text/css
+    #   - name: Upload styles.css
+    #     id: upload-css
+    #     uses: actions/upload-release-asset@v1
+    #     env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     with:
+    #       upload_url: ${{ steps.create_release.outputs.upload_url }}
+    #       asset_path: ./styles.css
+    #       asset_name: styles.css
+    #       asset_content_type: text/css
