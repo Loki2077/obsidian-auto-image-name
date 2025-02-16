@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/Loki2077/obsidian-auto-image-name/compare/1.2.0...1.2.1) (2025-02-16)
+
+
+### Bug Fixes
+
+* Add settings ([a436395](https://github.com/Loki2077/obsidian-auto-image-name/commit/a4363955e87bec98db51f71ccf8811791faaa9fd))
+
 ## [1.2.0](https://github.com/Loki2077/obsidian-auto-image-name/compare/1.1.0...1.2.0) (2025-02-16)
 
 
