@@ -41,7 +41,7 @@ export default class MyPlugin extends Plugin {
                 const clipboardData = evt.clipboardData || (window as any).clipboardData;
                 if (!clipboardData) return;
                 const files = clipboardData.files;
-                
+                // 不知道干什么写点东西
                 // 如果剪贴板中包含文件，则延时操作等待系统完成默认粘贴行为
                 if (files.length > 0) {
                     setTimeout(() => {
