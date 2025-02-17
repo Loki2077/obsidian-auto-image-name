@@ -1,94 +1,40 @@
-# Obsidian Sample Plugin
+# Obsidian Auto Image Name 插件 / Obsidian Auto Image Name Plugin
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+## 概述 / Overview
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+**中文：**  
+该插件可在 Obsidian 编辑器中自动为粘贴的图片插入文件名作为图片的 alt 文本，从而生成包含图片名称的 Markdown 图片语法。这样可以提升笔记的可读性和维护性，同时无需干预 Obsidian 默认的粘贴行为。
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+**English:**  
+This plugin automatically inserts the image file name as the alt text for pasted images in Obsidian, resulting in Markdown image syntax that includes the image name. This improves the readability and maintainability of your notes, all without interfering with Obsidian’s default paste behavior.
 
-## First time developing plugins?
+---
 
-Quick starting guide for new plugin devs:
+## 功能 / Features
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+- 自动检测图片粘贴操作 / Auto-detect image paste actions.
+- 在系统默认粘贴行为后，自动更新 Markdown 图片语法中的空 alt 文本，插入图片文件名（包含扩展名） / Automatically updates Markdown image syntax after default paste, inserting the image file name (with extension) into empty alt text fields.
+- 无需阻止默认粘贴行为 / Works alongside the default paste functionality.
 
-## Releasing new releases
+---
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+## 安装 / Installation
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+### 手动安装 / Manual Installation
 
-## Adding your plugin to the community plugin list
+1. 下载或克隆此仓库。
+2. 将包含 `manifest.json`、`main.js`、`styles.css` 等文件的插件文件夹 `obsidian-auto-image-name` 复制到您的 Obsidian vault 内的插件目录（一般为 `.obsidian/plugins/`）。
+3. 打开 Obsidian，进入设置 > 第三方插件，启用开发者模式后，启用该插件。
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+### 社区插件 / Community Plugin
 
-## How to use
+如果插件已发布到社区插件库，您可以直接通过 Obsidian 的社区插件管理器搜索并安装 "Obsidian Auto Image Name"。
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+---
 
-## Manually installing the plugin
+## 使用 / Usage
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
-
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
-
-## Funding URL
-
-You can include funding URLs where people who use your plugin can financially support it.
-
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
-
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
-```
-
-If you have multiple URLs, you can also do:
-
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
-
-## API Documentation
-
-See https://github.com/obsidianmd/obsidian-api
+1. 打开一个 Markdown 文件进行编辑。
+2. 粘贴包含图片的内容。系统会默认插入 Markdown 图片语法，例如：  
+   ```markdown
+   ![](/path/to/image.png)
